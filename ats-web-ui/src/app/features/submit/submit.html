@@ -1,0 +1,56 @@
+<section class="card">
+  <h1>Check a CV against a job description</h1>
+  <p class="muted">
+    Upload a résumé (PDF or DOCX) and paste the target job description. You'll get an ATS
+    compatibility assessment — results appear here in real time.
+  </p>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="field">
+      <label for="cv">CV file</label>
+      <input
+        id="cv"
+        type="file"
+        [accept]="acceptAttr"
+        (change)="onFileSelected($event)"
+        [attr.aria-describedby]="fileError() ? 'cv-error' : null"
+      />
+      @if (file(); as f) {
+        <p class="hint">Selected: {{ f.name }}</p>
+      }
+      @if (fileError(); as fe) {
+        <p id="cv-error" class="error" role="alert">{{ fe }}</p>
+      }
+    </div>
+
+    <div class="field">
+      <label for="jd">Job description</label>
+      <textarea
+        id="jd"
+        rows="10"
+        formControlName="jobDescription"
+        [attr.maxlength]="limits.maxJobDescriptionChars"
+        placeholder="Paste the job posting text here…"
+        [attr.aria-describedby]="jobDescription.invalid && jobDescription.touched ? 'jd-error' : null"
+      ></textarea>
+      <p class="hint">{{ jobDescription.value.length }} / {{ limits.maxJobDescriptionChars }}</p>
+      @if (jobDescription.invalid && jobDescription.touched) {
+        <p id="jd-error" class="error" role="alert">
+          @if (jobDescription.hasError('required')) {
+            A job description is required.
+          } @else if (jobDescription.hasError('maxlength')) {
+            The job description is too long.
+          }
+        </p>
+      }
+    </div>
+
+    @if (submitError(); as se) {
+      <p class="error" role="alert">{{ se }}</p>
+    }
+
+    <button type="submit" [disabled]="!canSubmit">
+      {{ submitting() ? 'Submitting…' : 'Submit for analysis' }}
+    </button>
+  </form>
+</section>

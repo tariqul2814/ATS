@@ -1,0 +1,135 @@
+@let r = result();
+
+<div class="overview">
+  <div
+    class="ring"
+    [class]="'ring band--' + r.band"
+    [style.--pct]="r.score"
+    role="img"
+    [attr.aria-label]="'ATS score ' + r.score + ' out of 100, ' + r.band"
+  >
+    <span class="ring-value">{{ r.score }}</span>
+    <span class="ring-max">/ 100</span>
+  </div>
+  <div class="overview-text">
+    <span class="band" [class]="'band band--' + r.band">{{ r.band }} match</span>
+    <p class="summary">{{ r.summary }}</p>
+  </div>
+</div>
+
+<section class="block">
+  <h3>Score breakdown</h3>
+  <ul class="breakdown">
+    @for (item of r.breakdown; track item.category) {
+      <li class="cat">
+        <div class="cat-head">
+          <span class="cat-name">{{ labels[item.category] }}</span>
+          <span class="cat-score">{{ item.score }} / {{ item.max }}</span>
+        </div>
+        <div
+          class="bar"
+          role="img"
+          [attr.aria-label]="labels[item.category] + ': ' + item.score + ' of ' + item.max"
+        >
+          <span class="bar-fill" [class]="'bar-fill level--' + level(item)" [style.width.%]="percent(item)"></span>
+        </div>
+        @if (item.reason) {
+          <p class="cat-reason muted">{{ item.reason }}</p>
+        }
+      </li>
+    }
+  </ul>
+</section>
+
+<section class="block keywords">
+  <h3>Keywords</h3>
+  <div class="kw-group">
+    <h4>Matched <span class="count">{{ r.matchedKeywords.length }}</span></h4>
+    @if (r.matchedKeywords.length) {
+      <ul class="chips">
+        @for (kw of r.matchedKeywords; track kw) {
+          <li class="chip chip--matched">{{ kw }}</li>
+        }
+      </ul>
+    } @else {
+      <p class="muted">None of the job's keywords were found in the CV.</p>
+    }
+  </div>
+
+  @for (group of missingGroups(); track group.title) {
+    <div class="kw-group">
+      <h4>{{ group.title }} <span class="count">{{ group.items.length }}</span></h4>
+      <ul class="missing">
+        @for (kw of group.items; track kw.keyword) {
+          <li>
+            <span class="chip chip--missing">{{ kw.keyword }}</span>
+            @if (kw.skillGap) {
+              <span class="hint hint--gap">Skill gap — your CV shows no experience with this</span>
+            } @else {
+              <span class="hint">Add to: {{ kw.whereToAdd }}</span>
+            }
+          </li>
+        }
+      </ul>
+    </div>
+  }
+</section>
+
+@if (r.topImprovements.length) {
+  <section class="block">
+    <h3>Top improvements</h3>
+    <ol class="improvements">
+      @for (imp of r.topImprovements; track $index) {
+        <li class="improvement">
+          <p class="imp-head"><strong>{{ imp.section }}</strong> — {{ imp.problem }}</p>
+          <div class="rewrite">
+            <div class="rewrite-col">
+              <span class="rewrite-label">Original</span>
+              <p class="rewrite-text rewrite-text--before">{{ imp.original }}</p>
+            </div>
+            <div class="rewrite-col">
+              <span class="rewrite-label">Suggested</span>
+              <p class="rewrite-text rewrite-text--after">{{ imp.suggested }}</p>
+            </div>
+          </div>
+        </li>
+      }
+    </ol>
+  </section>
+}
+
+@if (r.strengths.length || r.formattingIssues.length) {
+  <section class="block two-col">
+    @if (r.strengths.length) {
+      <div>
+        <h3>Strengths</h3>
+        <ul class="plain">
+          @for (s of r.strengths; track $index) {
+            <li>{{ s }}</li>
+          }
+        </ul>
+      </div>
+    }
+    @if (r.formattingIssues.length) {
+      <div>
+        <h3>Formatting issues</h3>
+        <ul class="plain">
+          @for (f of r.formattingIssues; track $index) {
+            <li>{{ f }}</li>
+          }
+        </ul>
+      </div>
+    }
+  </section>
+}
+
+<section class="block">
+  <div class="summary-head">
+    <h3>Suggested professional summary</h3>
+    <button type="button" class="small" (click)="copySummary()">
+      {{ summaryCopied() ? 'Copied' : 'Copy' }}
+    </button>
+  </div>
+  <blockquote class="revised">{{ r.revisedSummary }}</blockquote>
+  <p class="muted note">Written only from experience already in your CV — check it before using it.</p>
+</section>

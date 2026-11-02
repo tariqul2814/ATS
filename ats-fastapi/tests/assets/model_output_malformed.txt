@@ -1,0 +1,2 @@
+Sure! Here is my assessment of the candidate. Overall they look like a good fit with a score around 70,
+though they are missing Kubernetes. Let me know if you want more detail.

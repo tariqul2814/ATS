@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+.env
+*.db
+*.db-wal
+*.db-shm
+
+# Local assistant / editor config — not for publishing
+CLAUDE.md
+CLAUDE.local.md
+.claude/
+.mcp.json

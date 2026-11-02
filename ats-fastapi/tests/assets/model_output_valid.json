@@ -1,0 +1,24 @@
+{
+  "score": 72,
+  "band": "Good",
+  "breakdown": [
+    {"category": "keyword_match", "score": 26, "max": 35, "reason": "Python, FastAPI and SQL present; Kubernetes and Terraform absent."},
+    {"category": "experience_relevance", "score": 19, "max": 25, "reason": "Four years of backend API work matches the role's core duties."},
+    {"category": "achievements_impact", "score": 10, "max": 15, "reason": "Two quantified results; most bullets describe duties only."},
+    {"category": "ats_formatting", "score": 11, "max": 15, "reason": "Standard headings; skills listed inline rather than as a section."},
+    {"category": "education_certifications", "score": 6, "max": 10, "reason": "Relevant degree; no cloud certification."}
+  ],
+  "summary": "Solid backend match held back by missing infrastructure keywords and few measured outcomes.",
+  "matchedKeywords": ["Python", "FastAPI", "PostgreSQL", "REST APIs", "Docker"],
+  "missingKeywords": [
+    {"keyword": "Kubernetes", "requirement": "required", "whereToAdd": null, "skillGap": true},
+    {"keyword": "CI/CD", "requirement": "preferred", "whereToAdd": "Experience > Acme Corp: mention the GitHub Actions pipeline you maintained", "skillGap": false}
+  ],
+  "formattingIssues": ["Skills are embedded in the summary instead of a dedicated Skills section."],
+  "topImprovements": [
+    {"section": "Experience", "problem": "Duty-only bullet with no outcome.", "original": "Worked on the payments API.", "suggested": "Built payments API endpoints in FastAPI serving 2M requests/day."}
+  ],
+  "strengths": ["Directly relevant Python API experience", "Clear reverse-chronological layout"],
+  "revisedSummary": "Backend engineer with four years building Python REST APIs on FastAPI and PostgreSQL, shipping containerised services with Docker.",
+  "reportMarkdown": "# ATS report\n\n**Score:** 72/100 (Good)\n"
+}

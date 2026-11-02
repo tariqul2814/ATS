@@ -1,0 +1,34 @@
+<section class="card">
+  <h1>Your analyses</h1>
+  <p class="muted">
+    These are the analyses created in this browser. They're tracked by their id locally — clearing
+    your browser data will forget them here (the server still keeps the data).
+  </p>
+
+  @if (loading()) {
+    <p class="muted">Loading…</p>
+  } @else if (empty()) {
+    <div class="empty">
+      <p>You haven't submitted any analyses yet.</p>
+      <a routerLink="/" class="btn">Submit a CV</a>
+    </div>
+  } @else {
+    <ul class="list">
+      @for (row of rows(); track row.analysisId) {
+        <li class="row">
+          <a [routerLink]="['/analyses', row.analysisId]" class="row-main">
+            <span class="name">{{ row.fileName }}</span>
+            <span class="meta">
+              <span class="badge badge--{{ row.available ? row.status : 'unknown' }}">{{ row.status }}</span>
+              <span class="muted">{{ row.createdAt | date: 'medium' }}</span>
+              @if (row.hasResult) { <span class="muted">· result ready</span> }
+            </span>
+          </a>
+          <button type="button" class="remove" (click)="remove(row.analysisId, $event)" title="Forget locally">
+            ✕
+          </button>
+        </li>
+      }
+    </ul>
+  }
+</section>

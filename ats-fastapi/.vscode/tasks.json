@@ -1,0 +1,38 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "backend (uvicorn :8000)",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": [
+        "-m", "uvicorn", "app.main:create_app", "--factory",
+        "--host", "127.0.0.1", "--port", "8000"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": { "APP_DEBUG__ENABLED": "true" }
+      },
+      "isBackground": true,
+      "presentation": { "group": "dev", "panel": "dedicated", "reveal": "always" },
+      "problemMatcher": []
+    },
+    {
+      "label": "streamlit harness (:8501)",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["-m", "streamlit", "run", "debug_ui/streamlit_app.py"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "isBackground": true,
+      "presentation": { "group": "dev", "panel": "dedicated", "reveal": "always" },
+      "problemMatcher": []
+    },
+    {
+      "label": "dev: backend + streamlit",
+      "dependsOn": ["backend (uvicorn :8000)", "streamlit harness (:8501)"],
+      "dependsOrder": "parallel",
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": []
+    }
+  ]
+}

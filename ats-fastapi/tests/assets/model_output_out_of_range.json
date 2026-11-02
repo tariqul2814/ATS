@@ -1,0 +1,20 @@
+```json
+{
+  "score": 140,
+  "band": "excellent",
+  "breakdown": [
+    {"category": "keyword_match", "score": 50, "max": 35, "reason": "Many matches."},
+    {"category": "experience_relevance", "score": -3, "max": 25, "reason": "Relevant."},
+    {"category": "achievements_impact", "score": "12", "max": 15, "reason": "Some metrics."},
+    {"category": "ats_formatting", "score": 14.6, "max": 99, "reason": "Clean."},
+    {"category": "education_certifications", "score": 8, "max": 10, "reason": "Degree present."}
+  ],
+  "summary": "Strong candidate.",
+  "matchedKeywords": ["Python"],
+  "missingKeywords": [{"keyword": "Kubernetes", "requirement": "Required", "whereToAdd": "skill gap"}],
+  "formattingIssues": [],
+  "topImprovements": [],
+  "strengths": ["Python"],
+  "revisedSummary": "Python engineer."
+}
+```

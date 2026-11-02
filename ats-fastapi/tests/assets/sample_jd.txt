@@ -1,0 +1,55 @@
+We're looking for Software Engineers to join our team and help build Magnet One — a cloud-based platform that brings together digital forensic tools, case management, evidence storage, and collaboration workflows to help investigators uncover critical evidence faster. As part of this team, you'll work alongside collaborative, customer-focused colleagues, contribute across the stack, and help shape a platform used by forensic investigators around the world.
+We're hiring for multiple Software Developer positions across similar teams and welcome candidates with front-end, back-end, or full-stack experience. The salary range in this job ad reflects the variety of experience levels we're considering for these opportunities.
+NOTE: Candidates must reside in Canada.
+What You'll Do
+Analyze requirements, break down tasks and estimate effort;
+Design robust, performant and secure solutions;
+Develop efficient, modular, and maintainable software solutions;
+Participate in code reviews;
+Troubleshoot, debug and fix defects;
+Take initiative, build strong teams and communicate effectively;
+Guide best practices for building, delivering and maintaining multiple source code projects;
+Understanding the intent of the product, and using that knowledge to make product design, and architecture decisions.
+
+What We're Looking ForWe are Hiring for Front-end, Back-end, or Full-stack Software Engineers!
+Relevant professional software engineering experience;
+Post-secondary education in software engineering, computer or electrical engineering, computer science, math, or related field;
+Strong full-stack development skills with experience on both front-end and back-end systems;
+Proficiency with React and modern front-end web development (component design, state management, responsive UI);
+Experience with C# and building server-side application code (APIs, services, data access);
+Experience writing and maintaining automated tests at various levels of abstraction;
+Ability to work cross-functionally, communicate effectively with technical and non-technical stakeholders, and collaborate in a team environment;
+Comfortable navigating ambiguity and adapting in a fast-changing environment.
+
+Nice To Have Skills
+Python or other programming languages;
+Linux environments and shell scripting;
+Distributed data stores such as Elasticsearch, Redis, or PostgreSQL JSONB;
+Observability and monitoring tools such as Prometheus, Grafana, or OpenTelemetry;
+Cloud-native systems, distributed services, and SaaS platform development;
+AWS, Kubernetes, or container-based deployment pipelines;
+AI technologies and workflows (e.g., natural language search, agentic workflows, using AI as part of your development process);
+Experience working in security-conscious or highly regulated environments.
+
+Technologies You’ll Work WithWe're hiring across multiple teams, so the technologies you work with may vary by role. Some of the tools and technologies used across our teams may include:
+.NET / C#;
+AWS;
+React, TypeScript, HTML, CSS;
+REST and GraphQL APIs;
+Automated testing (e.g., xUnit, Jest, PyTest);
+Azure DevOps, GitLab, Git, and Jenkins;
+Python;
+Linux and shell scripting;
+Docker and containerized services (e.g. Kubernetes)
+Infrastructure-as-code (e.g. CDK)
+Distributed, message-driven systems
+Elasticsearch and search/indexing systems;
+Prometheus, Grafana, and OpenTelemetry;
+AI Coding tools such as Claude Code and Cursor.
+
+Compensation & Benefits The Compensation range is for the primary location for which the job is posted. Please note that the actual compensation may vary depending on location and job-related factors such as qualifications, experience, knowledge and skills. If you are applying for this role outside of the primary location and you are selected for an interview, the Talent Acquisition Partner can share more information with you. If the compensation structure for the role includes an incentive component (i.e. most Sales roles) the range below represents total target compensation (TTC) (base salary + variable).
+$90,000 - $140,000 (CDN) a yearSalary range (min - max)
+Position Type: Current Vacancy
+Magnet is proud to offer benefits such as: - Generous time off policies- Competitive compensation- Volunteer opportunities- Reward and recognition programs- Employee committees & resource groups- Healthcare and retirement benefits
+Indicators of SuccessWe’re looking for someone who checks off most, but not all, of the boxes listed in “skills and experiences”. It’s more important to us to find candidates who can display indicators of success through skills they have developed and experiences they have been a part of, than to find folks who have “been there, done that”. We want to be part of your development journey, and we’ll learn as much from you as you learn from us.
+How We WorkAt Magnet Forensics, we take a hybrid-flexible approach to support your productivity and work-life balance. If you’re within a comfortable travel distance to one of our offices, you’ll occasionally join us in person. How often you’ll come in depends on your department and team needs, typically ranging from weekly to monthly. These in-person moments help us build stronger connections, spark new ideas, and celebrate our successes together. Most days, you can choose what works best for you, while staying in tune with your team’s goals.

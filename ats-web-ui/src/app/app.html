@@ -1,0 +1,18 @@
+<header class="topbar">
+  <a routerLink="/" class="brand">ATS Checker</a>
+  <nav>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Submit</a>
+    <a routerLink="/history" routerLinkActive="active">History</a>
+  </nav>
+</header>
+
+@if (notifications.current(); as n) {
+  <div class="toast" [class.toast--error]="n.kind === 'error'" role="status">
+    <span>{{ n.message }}</span>
+    <button type="button" (click)="notifications.clear()" aria-label="Dismiss">✕</button>
+  </div>
+}
+
+<main class="container">
+  <router-outlet />
+</main>

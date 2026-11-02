@@ -1,0 +1,9 @@
+# Local assistant / editor config — not for publishing
+CLAUDE.md
+CLAUDE.local.md
+**/CLAUDE.md
+**/CLAUDE.local.md
+.claude/
+**/.claude/
+.mcp.json
+**/.mcp.json

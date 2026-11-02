@@ -1,0 +1,93 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ats-fastapi"
+version = "0.1.0"
+description = "ATS scoring engine: scores a CV against a job description via local Ollama and posts the result to the orchestrator."
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "pydantic>=2.8",
+    "pydantic-settings>=2.4",
+    "pypdf>=4.3",
+    "python-docx>=1.1",
+    "ollama>=0.4",
+    "httpx>=0.27",
+    "aiosqlite>=0.20",
+    "anyio>=4.4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "pytest-cov>=5.0",
+    "respx>=0.21",
+    "ruff>=0.6",
+    "reportlab>=4.2",
+    "python-multipart>=0.0.9",
+]
+notebook = ["jupyter>=1.0"]
+# Developer test harness (ats-debug-ui): the Streamlit client plus python-multipart, which the
+# gated /debug upload endpoints need in the service process. Installed only when enabling the harness.
+debug-ui = [
+    "streamlit>=1.37",
+    "httpx>=0.27",
+    "python-multipart>=0.0.9",
+]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.setuptools.package-data]
+app = ["prompts/*.md"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = [
+    # Starlette's TestClient announcing its own httpx backend change; not from this code.
+    "ignore:Using `httpx` with `starlette.testclient` is deprecated",
+]
+
+[tool.coverage.run]
+source = ["app/pipeline", "app/contracts"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+# Add readability enforcement on top of ruff's default rule set (E, F, B, SIM, ...):
+#   I            import ordering
+#   D100-D103    docstrings on public modules, classes and functions
+#   ANN001/201/202  type hints on arguments and returns
+#   C901         over-branched functions (see mccabe.max-complexity)
+#   PLR0915      over-long functions (see pylint.max-statements)
+extend-select = ["I", "D100", "D101", "D102", "D103", "ANN001", "ANN201", "ANN202", "C901", "PLR0915"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.pylint]
+max-statements = 30
+
+[tool.ruff.lint.per-file-ignores]
+# The docstring, type-hint and size rules target app/ only. Tests read as prose,
+# and debug_ui/ and the notebooks are developer tooling outside the refactor scope.
+"tests/**" = ["D100", "D101", "D102", "D103", "ANN001", "ANN201", "ANN202"]
+"debug_ui/**" = ["D100", "D101", "D102", "D103", "ANN001", "ANN201", "ANN202", "C901", "PLR0915"]
+"notebooks/**" = ["D100", "D101", "D102", "D103", "ANN001", "ANN201", "ANN202", "C901", "PLR0915"]

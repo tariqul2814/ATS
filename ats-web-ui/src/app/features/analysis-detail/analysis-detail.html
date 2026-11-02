@@ -1,0 +1,73 @@
+<section class="card">
+  <a routerLink="/history" class="back">← History</a>
+
+  @if (loading()) {
+    <p class="muted">Loading analysis…</p>
+  } @else if (notFound()) {
+    <h1>Analysis not found</h1>
+    <p class="muted">
+      We couldn't find analysis <code>{{ analysisId() }}</code>. It may never have existed or
+      the id is incorrect.
+    </p>
+    <a routerLink="/" class="btn">Submit a new CV</a>
+  } @else {
+    <h1>Analysis</h1>
+    <p class="id"><code>{{ analysisId() }}</code></p>
+
+    <div class="statusline">
+      <span class="badge" [class]="'badge--' + (state() ?? 'unknown')">{{ state() }}</span>
+      @if (!isTerminal()) {
+        <span class="spinner" aria-hidden="true"></span>
+        <span class="muted">
+          {{ live() ? 'Live updates on' : 'Checking for updates…' }}
+        </span>
+      }
+    </div>
+
+    @if (status(); as s) {
+      @switch (s.status) {
+        @case ('Completed') {
+          @if (structuredResult(); as result) {
+            <div class="result-header">
+              <h2>Result</h2>
+              <div class="result-actions">
+                <button type="button" (click)="downloadReport()">Download report (.md)</button>
+                <button type="button" (click)="downloadResult()">Download JSON</button>
+              </div>
+            </div>
+            <app-result-view [result]="result" />
+            <details class="raw">
+              <summary>Raw JSON</summary>
+              <div class="result-actions">
+                <button type="button" (click)="copyResult()">Copy JSON</button>
+              </div>
+              <pre class="result">{{ formattedResult() }}</pre>
+            </details>
+          } @else if (formattedResult(); as r) {
+            <!-- Unknown result shape: show it generically rather than fail (Requirement 5.2). -->
+            <h2>Result</h2>
+            <div class="result-actions">
+              <button type="button" (click)="copyResult()">Copy JSON</button>
+              <button type="button" (click)="downloadResult()">Download JSON</button>
+            </div>
+            <pre class="result">{{ r }}</pre>
+          } @else {
+            <h2>Result</h2>
+            <p class="muted">No result document was returned.</p>
+          }
+        }
+        @case ('Failed') {
+          <h2>Analysis failed</h2>
+          <p class="error" role="alert">{{ s.error ?? 'The analysis failed without a reason.' }}</p>
+          <a routerLink="/" class="btn">Try another submission</a>
+        }
+        @default {
+          <p class="muted">
+            Your analysis is {{ s.status | lowercase }}. This page will update automatically when
+            it finishes — you can safely leave and come back to it from your history.
+          </p>
+        }
+      }
+    }
+  }
+</section>
